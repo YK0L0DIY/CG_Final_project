@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trabalho final 3D</title>
+    <head>
+        <script type='text/javascript' src='https://www.x3dom.org/download/x3dom.js'></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <script type='text/javascript' src='https://www.x3dom.org/x3dom/release/x3dom.js'></script>
+        <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/x3dom/release/x3dom.css'/>
+        <script src="scripts/final3D.js"></script>
+        <meta charset="UTF-8">
+    </head>
+<body>
+<x3d width="600" height="600">
+    <Scene>
+        <DirectionalLight id="directional" direction='-2 -0.5 -4' on="TRUE" intensity='0.5'
+                          shadowIntensity='0.5'></DirectionalLight>
+        <Viewpoint position="3.42654 1.29013 6.00528" orientation="-0.24254 0.97014 0.00000 0.47588" zNear="2.94417"
+                   zFar="11.38706" description="defaultX3DViewpointNode"></Viewpoint>
+        <Switch whichChoice="-1">
+            <IndexedFaceSet id="box_superior:GEOM" coordIndex='
+           		0 1 2 3 -1
+           		1 5 6 2 -1
+           		5 4 7 6 -1
+           		4 0 3 7 -1
+           		4 5 1 0 -1
+           		9 8 11 10 -1
+           		13 9 10 14 -1
+           		12 13 14 15 -1
+           		8 12 15 3 -1
+           		9 13 12 8 -1
+           		3 2 10 11 -1
+           		2 6 14 10 -1
+           		6 7 15 14 -1
+           		7 3 11 15 -1'>
+                <Coordinate point='
+					0 0 0 5
+					0 0 5 12.5
+					0 0 12.5 0
+					0 0 -9.5 5
+					0 -9.5 5 12.5
+					-9.5 0 12.5 -9.5
+					0.5 0.5 -0.5 4.5
+					0.5 -0.5 4.5 12.5
+					-0.5 0.5 12.5 -0.5
+					0.5 0.5 -9 4.5
+					0.5 -9 4.5 12.5
+					-9 0.5 12.5 -9'>
+                </Coordinate>
+            </IndexedFaceSet>
+
+            <Appearance DEF="madeira_castanha">
+                <CommonSurfaceShader>
+                    <ImageTexture containerField="diffuseTexture" url="media/large_thumbnail.jpg"></ImageTexture>
+                </CommonSurfaceShader>
+            </Appearance>
+            <Appearance DEF="madeira_branca">
+                <CommonSurfaceShader>
+                    <ImageTexture containerField="diffuseTexture"
+                                  url="media/white-wood-pattern-texture-background_64749-1631.jpg"></ImageTexture>
+                </CommonSurfaceShader>
+            </Appearance>
+
+        </Switch>
+
+        <Group>
+            <Transform translation="0 -0.2 0">
+                <Group>
+                    <Transform id="box_superior" translation="-1.5 2 -.5" scale='0.2 0.1 0.08' rotation='1 0 0 1.57'>
+                        <shape>
+                            <Appearance USE="madeira_branca"></Appearance>
+                            <X3DGeometryNode use="box_superior:GEOM"></X3DGeometryNode>
+                        </shape>
+                    </Transform>
+
+                    <Transform id="porta1" onclick='test("porta1")' translation="-1 2.38 0.78" scale='0.99 0.75 0.05'>
+                        <shape>
+                            <Appearance USE="madeira_castanha"></Appearance>
+                            <box size="1 1 1"></box>
+                        </shape>
+                    </Transform>
+
+                    <Transform translation="1 0 0">
+                        <X3DGeometryNode use="box_superior"></X3DGeometryNode>
+                    </Transform>
+
+                    <Transform onclick='test("porta2")' id='porta2' translation="0 2.38 0.78" scale='0.99 0.75 0.05'>
+                        <shape>
+                            <Appearance USE="madeira_castanha"></Appearance>
+                            <box size="1 1 1"></box>
+                        </shape>
+                    </Transform>
+
+                    <Transform translation="2 0 0">
+                        <X3DGeometryNode use="box_superior"></X3DGeometryNode>
+                    </Transform>
+
+                    <Transform translation="3 0 0">
+                        <X3DGeometryNode use="box_superior"></X3DGeometryNode>
+                    </Transform>
+
+                    <Transform onclick='test("porta3")' id='porta3' translation="1 2.38 0.78" scale='0.99 0.75 0.05'>
+                        <shape>
+                            <Appearance USE="madeira_castanha"></Appearance>
+                            <box size="1 1 1"></box>
+                        </shape>
+                    </Transform>
+
+                    <Transform onclick='test("porta4")' id='porta4' translation="2 2.38 0.78" scale='0.99 0.75 0.05'>
+                        <shape>
+                            <Appearance USE="madeira_castanha"></Appearance>
+                            <box size="1 1 1"></box>
+                        </shape>
+                    </Transform>
+                </Group>
+            </Transform>
+
+            <Transform translation="0 .06 -0.1" scale='1 1 0.8'>
+                <Group>
+                    <Transform translation="0 -1 0" id="box_lateral">
+                        <X3DGeometryNode use="box_superior"></X3DGeometryNode>
+                    </Transform>
+
+                    <Transform translation="0 -0.7 0">
+                        <X3DGeometryNode use="box_lateral"></X3DGeometryNode>
+                    </Transform>
+
+                    <Transform translation="0 -1.4 0">
+                        <X3DGeometryNode use="box_lateral"></X3DGeometryNode>
+                    </Transform>
+                </Group>
+            </Transform>
+
+            <Transform translation="0 .73 0" scale='1 1.2 1'>
+                <Group id="caixa_inferior">
+                    <Transform translation="0 -3 0" scale='1 1.2 1'>
+                        <X3DGeometryNode use="box_lateral"></X3DGeometryNode>
+                    </Transform>
+                    <Transform onclick='test("porta5")' id='porta5' translation="-1 -1.35 0.78" scale='0.99 .92 0.05'>
+                        <shape>
+                            <Appearance USE="madeira_castanha"></Appearance>
+                            <box size="1 1 1"></box>
+                        </shape>
+                    </Transform>
+                </Group>
+            </Transform>
+
+
+            <Transform translation="0 .461 0">
+                <Group id="caixa_inferior2">
+                    <Transform translation="1 -1.5 0" scale='1 0.4 1' id="prateleira">
+                        <X3DGeometryNode use="box_lateral"></X3DGeometryNode>
+                    </Transform>
+                    <Transform translation="0 -.3 0">
+                        <X3DGeometryNode use="prateleira"></X3DGeometryNode>
+                    </Transform>
+                    <Transform translation="1 -2.59 0" scale='1 0.7 1'>
+                        <X3DGeometryNode use="box_lateral"></X3DGeometryNode>
+                    </Transform>
+                    <Transform onclick='test("porta6")' id='porta6' translation="0 -1.63 0.78" scale='0.99 .55 0.05'>
+                        <shape>
+                            <Appearance USE="madeira_castanha"></Appearance>
+                            <box size="1 1 1"></box>
+                        </shape>
+                    </Transform>
+                </Group>
+            </Transform>
+
+            <Transform translation="0 0.1828 0">
+                <Group id="caicxa_inferior_meio">
+                    <Transform translation="1 0 0" scale='1 0.65 1' id="prateira2">
+                        <X3DGeometryNode use="prateleira"></X3DGeometryNode>
+                    </Transform>
+                    <Transform translation="0 -.18 0">
+                        <X3DGeometryNode use="prateira2"></X3DGeometryNode>
+                    </Transform>
+                    <Transform translation="0 -.37 0">
+                        <X3DGeometryNode use="prateira2"></X3DGeometryNode>
+                    </Transform>
+                    <Transform translation="2 -2.31 0" scale='1 0.7 1'>
+                        <X3DGeometryNode use="box_lateral"></X3DGeometryNode>
+                    </Transform>
+                    <Transform onclick='test("porta7")' id='porta7' translation="1 -1.35 0.78" scale='0.99 .55 0.05'>
+                        <shape>
+                            <Appearance USE="madeira_castanha"></Appearance>
+                            <box size="1 1 1"></box>
+                        </shape>
+                    </Transform>
+                </Group>
+            </Transform>
+
+            <Transform translation="2 .461 0">
+                <Group id="caixa_inferior2">
+                    <Transform translation="1 -1.5 0" scale='1 0.4 1' id="prateleira">
+                        <X3DGeometryNode use="box_lateral"></X3DGeometryNode>
+                    </Transform>
+                    <Transform translation="0 -.3 0">
+                        <X3DGeometryNode use="prateleira"></X3DGeometryNode>
+                    </Transform>
+                    <Transform translation="1 -2.59 0" scale='1 0.7 1'>
+                        <X3DGeometryNode use="box_lateral"></X3DGeometryNode>
+                    </Transform>
+                    <Transform onclick='test("porta8")' id='porta8' translation="0 -1.63 0.78" scale='0.99 .55 0.05'>
+                        <shape>
+                            <Appearance USE="madeira_castanha">
+                            </Appearance>
+                            <box size="1 1 1"></box>
+                        </shape>
+                    </Transform>
+                </Group>
+            </Transform>
+        </Group>
+    </Scene>
+
+</x3d>
+</body>
+</html>
